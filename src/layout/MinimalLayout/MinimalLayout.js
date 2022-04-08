@@ -1,20 +1,26 @@
-import styled from '@emotion/styled';
-import { Box } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { Navbar } from './components';
-
-const Content = styled('div')(() => ({
-     marginTop: '89px',
-     padding: '39px 84.5px 0px 84.5px'
-}))
 
 const MinimalLayout = ({ children }) => {
      return(
           <Box>
                <Navbar /> 
-               <Content>
+               <Box
+                    sx={{
+                         marginTop: '89px',
+                         padding: {
+                              lg: '39px 84.5px 39px 84.5px',
+                              xs: '30px'
+                         }
+                    }}
+               >
                     { children }
-               </Content>
+                    <Stack sx={{ marginTop: '39px'}} direction='row' spacing={2}>
+                         <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/flat-color-icons_flash-on.svg`} alt='bolt' />
+                         <Typography variant='body2'>Copyright 2022 | PT POS Indonesia (Persero)</Typography>
+                    </Stack>
+               </Box>
                
           </Box>
      )
