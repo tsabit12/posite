@@ -1,26 +1,27 @@
 import { Box, Breadcrumbs, Grid, Link, Typography } from '@mui/material';
-import React from 'react'
+import React, { useState } from 'react'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { FrameworkList, FrameworkMenu } from './components';
 import frameworks from '../../dummy/hero.json';
-
-const headerlist = [
-     { name: 'Bagian Hero', count: 123 },
-     { name: 'Element', count: 87 },
-     { name: 'Headings', count: 98 },
-     { name: 'Data Display', count: 11 },
-     { name: 'list', count: 13},
-     { name: 'Form', count: 15 },
-     { name: 'Navigasi', count: 18 },
-     { name: 'layout', count: 19 },
-     { name: 'Banner', count: 1 },
-     { name: 'Karir', count: 5 }
-]
+import listbagian from '../../dummy/bagianhero.json';
 
 const HomeHero = (props) => {
-     const handlePreview = (framework) => {
-          props.history.push(`/home/preview?type=Bagian Hero&name=${framework.title}&id=${framework.id}`)
+     const [componentlist, setcomponentlist] = useState(frameworks);
+
+     const handlePreview = (component) => {
+          props.history.push(`/home/preview?type=Bagian Hero&name=${component.title}&id=${component.id}`)
      }
+     
+     const handleChangeMenu = (componentid, frameworkid) => {
+          let finded = [];
+          if(frameworkid === '00') {
+               finded = frameworks.filter(row => row.componentid === componentid);
+          }else{
+               finded = frameworks.filter(row => row.componentid === componentid && row.frameworkid === frameworkid);
+          }
+
+          setcomponentlist(finded);
+     };
 
      return(
           <Box>
@@ -54,11 +55,11 @@ const HomeHero = (props) => {
                </Box>
                <Grid container spacing={'21px'} sx={{ marginTop: '24px'}}>
                     <Grid item xs={12} lg={3}>
-                         <FrameworkMenu headers={headerlist} />
+                         <FrameworkMenu headers={listbagian} onChange={handleChangeMenu} />
                     </Grid>
                     <Grid item xs={12} lg={9}>
                          <FrameworkList 
-                              list={frameworks} 
+                              list={componentlist} 
                               onPreview={handlePreview}
                          />
                     </Grid>

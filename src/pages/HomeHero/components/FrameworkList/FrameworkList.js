@@ -4,6 +4,36 @@ import { Avatar, CardActionArea, Grid, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 
 const FrameworkList = ({ list, onPreview }) => {
+     if(list.length <= 0){
+          return(
+               <Box sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    <Box>
+                         <img 
+                              alt='404image' 
+                              src={`${process.env.REACT_APP_PUBLIC_URL}/assets/26649.svg`} 
+                              style={{ width: '100%', height: '223.57px'}}
+                         />
+                         <Box sx={{ marginTop: '38px'}}>
+                              <Typography 
+                                   align='center' 
+                                   sx={{ fontSize: '24px', fontWeight: '500', lineHeight: '36px'}}
+                              >
+                                   Tidak ada yang bisa ditampilkan 🙏
+                              </Typography>
+                              <Typography 
+                                   align='center' 
+                                   color={'rgba(70, 70, 101, 0.6)'}
+                                   fontSize='18px'
+                                   lineHeight={'27px'}
+                              >
+                                   Silakan mencari di Framework atau Kategori lain
+                              </Typography>
+                         </Box>
+                    </Box>
+               </Box>
+          )
+     }
+
      return(
           <Grid container spacing={3}>
                { list.map((row, index) => <Grid item xs={12} lg={4} key={index}>

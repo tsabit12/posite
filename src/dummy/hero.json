@@ -1,12 +1,16 @@
 [
      {
+          "frameworkid": 1,
+          "componentid": 1,
           "id": "hahahsaahs",
           "title": "Hero dengan Form", 
-          "author": "Devti Nabillah C.", 
+          "author": "Tsabit A. Aziz", 
           "img": "/assets/cards/hero/1.png",
-          "person": "/assets/person/Famale1.png"
+          "person": "/assets/person/Male1.png"
      },
      {
+          "frameworkid": 1,
+          "componentid": 1,
           "id": "hahahsaahs1",
           "title": "Hero Simpel", 
           "author": "Rendy Dwi Reksiano.", 
@@ -14,6 +18,8 @@
           "person": "/assets/person/Male3.png"
      },
      {
+          "frameworkid": 1,
+          "componentid": 1,
           "id": "hahahsaahs2",
           "title": "Split Navbar", 
           "author": "Tsabit Abdul Aziz", 
@@ -21,6 +27,8 @@
           "person": "/assets/person/Male1.png"
      },
      {
+          "frameworkid": 1,
+          "componentid": 1,
           "id": "hahahsaah3",
           "title": "Hero dengan Video",
           "author": "Devti Nabillah C.", 
@@ -28,6 +36,8 @@
           "person": "/assets/person/Famale1.png"
      },
      {
+          "frameworkid": 1,
+          "componentid": 1,
           "id": "hahahsaah4",
           "title": "Hero Gambar Screenshot", 
           "author": "Ricky E. Septiana", 

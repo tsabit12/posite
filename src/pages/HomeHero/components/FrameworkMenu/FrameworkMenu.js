@@ -1,5 +1,5 @@
 import { alpha, Box, Button, Chip, Menu, MenuItem, Stack, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PropTypes from 'prop-types'
@@ -47,15 +47,15 @@ const StyledMenu = styled((props) => (
 
 const getlabel = (value) => {
      switch (value) {
-          case 1:
+          case '00':
                return 'Semua Framework';
-          case 2:
+          case 1:
                return 'HTML';
-          case 3:
+          case 2:
                return 'React';
-          case 4:
+          case 3:
                return 'Bootstrap';
-          case 5:
+          case 4:
                return 'Tailwind';
           default:
                return 'Semua Framework';
@@ -77,10 +77,20 @@ const ButtonOptions = styled(Button)({
      }
 })
 
-const FrameworkMenu = ({ headers }) => {
+const FrameworkMenu = ({ headers, onChange }) => {
      const [anchorEl, setAnchorEl] = useState(null);
-     const [value, setvalue] = useState(1);
+     const [value, setvalue] = useState('00');
+     const [data, setdata] = useState([]);
+     const [activeIndex, setactiveIndex] = useState(0);
      const open = Boolean(anchorEl);
+
+     useEffect(() => {
+          let idx = headers[activeIndex] ? headers[activeIndex].id : 0;
+          const { components } = headers.find(row => row.id === value);
+          setdata(components);
+          onChange(idx, value);
+          //eslint-disable-next-line
+     }, [value]);
 
      const handleClick = (event) => {
           setAnchorEl(event.currentTarget);
@@ -91,6 +101,12 @@ const FrameworkMenu = ({ headers }) => {
 
           setAnchorEl(null);
      } 
+
+     const handleChange = (i) => {
+          setactiveIndex(i);
+          const val = data[i].id;
+          onChange(val, value)
+     }
 
      const label = getlabel(value);
 
@@ -112,19 +128,20 @@ const FrameworkMenu = ({ headers }) => {
 
                <Box sx={{ marginTop: '1vh'}}>
                     <Stack spacing={'4px'}>
-                         { headers.map((row, index) => 
+                         { data.map((row, index) => 
                          <Box 
                               key={index} 
                               sx={{ 
                                    display: 'flex', 
                                    justifyContent: 'space-between',
                                    cursor: 'pointer',
-                                   backgroundColor: index === 0 ? '#F2F2F2' : 'none',
+                                   backgroundColor: index === activeIndex ? '#F2F2F2' : 'none',
                                    padding: '7px 15px',
                                    borderRadius: '10px'
                               }}
+                              onClick={() => handleChange(index)}
                          >
-                              <Typography sx={{ fontSize: '16px', color: 'rgba(37, 39, 63, 0.7)', fontWeight: '600'}}>{row.name}</Typography>
+                              <Typography sx={{ fontSize: '16px', color: 'rgba(37, 39, 63, 0.7)', fontWeight: '600'}}>{row.title}</Typography>
                               <Chip 
                                    label={row.count} 
                                    sx={{ 
@@ -148,32 +165,32 @@ const FrameworkMenu = ({ headers }) => {
                     open={open}
                     //onClose={handleClose}
                >
-                    <MenuItem onClick={() => handleClose(2)} disableRipple>
+                    <MenuItem onClick={() => handleClose(1)} disableRipple>
                          <Stack direction={'row'} spacing={1}>
                               <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/html.svg`} alt='html' /> 
                               <span>HTML</span>
                          </Stack>
                     </MenuItem>
-                    <MenuItem onClick={() => handleClose(3)} disableRipple>
+                    <MenuItem onClick={() => handleClose(2)} disableRipple>
                          <Stack direction={'row'} spacing={1}>
                               <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/react.svg`} alt='react' /> 
                               <span>React</span>
                          </Stack>
                     </MenuItem>
-                    <MenuItem onClick={() => handleClose(4)} disableRipple>
+                    <MenuItem onClick={() => handleClose(3)} disableRipple>
                          <Stack direction={'row'} spacing={1}>
                               <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/bootstrap.svg`} alt='bootstrap' /> 
                               <span>Bootstrap</span>
                          </Stack>
                     </MenuItem>
-                    <MenuItem onClick={() => handleClose(5)} disableRipple>
+                    <MenuItem onClick={() => handleClose(4)} disableRipple>
                          <Stack direction={'row'} spacing={1}>
                               <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/tailwindcss.svg`} alt='tailwind' /> 
                               <span>Tailwind</span>
                          </Stack>
                     </MenuItem>
 
-                    { value !== 1 && <MenuItem onClick={() => handleClose(1)} disableRipple>
+                    { value !== '00' && <MenuItem onClick={() => handleClose('00')} disableRipple>
                          <span>Semua Framework</span>
                     </MenuItem> }
                </StyledMenu>
@@ -182,7 +199,8 @@ const FrameworkMenu = ({ headers }) => {
 }
 
 FrameworkMenu.propTypes = {
-     headers: PropTypes.array.isRequired
+     headers: PropTypes.array.isRequired,
+     onChange: PropTypes.func.isRequired
 }
 
 export default FrameworkMenu;
