@@ -15,8 +15,10 @@ const MinimalLayout = ({ children }) => {
                          }
                     }}
                >
-                    { children }
-                    <Stack sx={{ marginTop: '39px'}} direction='row' spacing={2}>
+                    <Box sx={{ minHeight: '80vh'}}>
+                         { children }
+                    </Box>
+                    <Stack direction='row' spacing={2} sx={{ marginTop: '36px'}}>
                          <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/flat-color-icons_flash-on.svg`} alt='bolt' />
                          <Typography variant='body2'>Copyright 2022 | PT POS Indonesia (Persero)</Typography>
                     </Stack>
