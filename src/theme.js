@@ -67,6 +67,20 @@ export const theme = createTheme({
                lineHeight: '24px',
                color: 'rgba(37, 39, 63, 0.7)'
           },
+          h4: {
+               color: '#FFFFFF',
+               fontWeight: '700',
+               lineHeight: '58px',
+               fontSize: '32px'
+          },
+          h5: {
+               color: '#081A51',
+               textTransform: 'uppercase',
+               fontWeight: '700',
+               fontSize: '18px',
+               lineHeight: '20px',   
+               letterSpacing: '0.4px'
+          },
           h6: {
                fontFamily: 'Poppins',
                fontWeight: '500',

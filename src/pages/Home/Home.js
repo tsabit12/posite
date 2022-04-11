@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
-import { Button, Grid, InputBase, Paper, Stack, Typography } from '@mui/material';
+import { Button, CardActionArea, Grid, InputBase, Paper, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-// import { CardOne } from './components';
 
 const MenuNavbar = styled(Stack)({
      backgroundColor: 'rgba(1, 126, 250, 0.1)',
@@ -35,30 +34,51 @@ const BoxModal = styled(Box)({
 
 const cardlist = [
      {
-          title: 'Bagian Hero', subtitle: '10 komponen', img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/1.png`
+          title: 'Bagian Hero', 
+          subtitle: '10 komponen', 
+          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/1.png`,
+          topath: '/home/hero'
      },
      {
-          title: 'Bagian CTA', subtitle: '8 komponen', img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/2.png`
+          title: 'Bagian CTA', 
+          subtitle: '8 komponen', 
+          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/2.png`,
+          topath: '/home'
      },
      {
-          title: 'Bagian Harga', subtitle: '10 komponen', img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/3.png`
+          title: 'Bagian Harga', 
+          subtitle: '10 komponen', 
+          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/3.png`,
+          topath: '/home'
      },
      {
-          title: 'Bagian FAQ', subtitle: '10 komponen', img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/4.png`
+          title: 'Bagian FAQ', 
+          subtitle: '10 komponen', 
+          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/4.png`,
+          topath: '/home'
      },
      {
-          title: 'Statistik', subtitle: '10 komponen', img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/5.png`
+          title: 'Statistik', 
+          subtitle: '10 komponen', 
+          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/5.png`,
+          topath: '/home'
      },
      {
-          title: 'Bagian Testimoni', subtitle: '8 komponen', img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/6.png`
+          title: 'Bagian Testimoni', 
+          subtitle: '8 komponen', 
+          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/6.png`,
+          topath: '/home'
      },
      {
-          title: 'Bagian Kontak', subtitle: '10 komponen', img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/7.png`
+          title: 'Bagian Kontak', 
+          subtitle: '10 komponen', 
+          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/7.png`,
+          topath: '/home'
      }
 ]
 
 
-const Home = () => {
+const Home = (props) => {
      return(
           <React.Fragment>
                <Grid container spacing={'85px'} alignItems='center'>
@@ -112,22 +132,24 @@ const Home = () => {
                </MenuNavbar>
                <Grid container spacing={2} sx={{ marginTop: '42px'}}>
                     { cardlist.map((row, index) => <Grid item xs={3} key={index}>
-                         <Box 
-                              sx={{ 
-                                   backgroundColor: '#F3F4F6', 
-                                   border: '1px solid rgba(0, 0, 0, 0.1)',
-                                   borderRadius: '10px',
-                                   overflow: 'hidden'
-                              }}
-                         >
-                              <Box sx={{ margin: '14px 48px 14px 48px'}}>
-                                   <img src={row.img} style={{width: '100%', height: '100%'}} alt={`image_card${index}`} />
+                         <CardActionArea onClick={() => props.history.push(row.topath)}>
+                              <Box 
+                                   sx={{ 
+                                        backgroundColor: '#F3F4F6', 
+                                        border: '1px solid rgba(0, 0, 0, 0.1)',
+                                        borderRadius: '10px',
+                                        overflow: 'hidden'
+                                   }}
+                              >
+                                   <Box sx={{ margin: '14px 48px 14px 48px'}}>
+                                        <img src={row.img} style={{width: '100%', height: '100%'}} alt={`image_card${index}`} />
+                                   </Box>
+                                   <Box sx={{ backgroundColor: '#FFFFFF', padding: '8px 19px'}}>
+                                        <Typography variant='h6'>{ row.title } </Typography>
+                                        <Typography variant='h7'>{row.subtitle}</Typography>
+                                   </Box>
                               </Box>
-                              <Box sx={{ backgroundColor: '#FFFFFF', padding: '8px 19px'}}>
-                                   <Typography variant='h6'>{ row.title } </Typography>
-                                   <Typography variant='h7'>{row.subtitle}</Typography>
-                              </Box>
-                         </Box>
+                         </CardActionArea>
                     </Grid>)}
 
                     {/* last Element */}
