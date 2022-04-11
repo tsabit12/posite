@@ -1,0 +1,37 @@
+[
+     {
+          "id": "hahahsaahs",
+          "title": "Hero dengan Form", 
+          "author": "Devti Nabillah C.", 
+          "img": "/assets/cards/hero/1.png",
+          "person": "/assets/person/Famale1.png"
+     },
+     {
+          "id": "hahahsaahs1",
+          "title": "Hero Simpel", 
+          "author": "Rendy Dwi Reksiano.", 
+          "img": "/assets/cards/hero/2.png",
+          "person": "/assets/person/Male3.png"
+     },
+     {
+          "id": "hahahsaahs2",
+          "title": "Split Navbar", 
+          "author": "Tsabit Abdul Aziz", 
+          "img": "/assets/cards/hero/3.png",
+          "person": "/assets/person/Male1.png"
+     },
+     {
+          "id": "hahahsaah3",
+          "title": "Hero dengan Video",
+          "author": "Devti Nabillah C.", 
+          "img": "/assets/cards/hero/4.png",
+          "person": "/assets/person/Famale1.png"
+     },
+     {
+          "id": "hahahsaah4",
+          "title": "Hero Gambar Screenshot", 
+          "author": "Ricky E. Septiana", 
+          "img": "/assets/cards/hero/5.png",
+          "person": "/assets/person/Male2.png"
+     }
+]

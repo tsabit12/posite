@@ -53,6 +53,13 @@ export const theme = createTheme({
                lineHeight: '72.4px',
                color: '#091B51'
           },
+          title2: {
+               fontFamily: 'Poppins',
+               fontWeight: '700',
+               fontSize: '24px',
+               lineHeight: '43.44px',
+               color: '#081A51'
+          },
           body1: {
                fontFamily: 'Poppins',
                fontWeight: '400',

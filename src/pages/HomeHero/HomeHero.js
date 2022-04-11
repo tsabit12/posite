@@ -2,6 +2,7 @@ import { Box, Breadcrumbs, Grid, Link, Typography } from '@mui/material';
 import React from 'react'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { FrameworkList, FrameworkMenu } from './components';
+import frameworks from '../../dummy/hero.json';
 
 const headerlist = [
      { name: 'Bagian Hero', count: 123 },
@@ -16,41 +17,10 @@ const headerlist = [
      { name: 'Karir', count: 5 }
 ]
 
-const frameworks = [
-     {
-          
-          title: 'Hero dengan Form', 
-          author: 'Devti Nabillah C.', 
-          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/hero/1.png`,
-          person: `${process.env.REACT_APP_PUBLIC_URL}/assets/person/Famale1.png`
-     },
-     {
-          title: 'Hero Simpel', 
-          author: 'Rendy Dwi Reksiano.', 
-          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/hero/2.png`,
-          person: `${process.env.REACT_APP_PUBLIC_URL}/assets/person/Male3.png`
-     },
-     {
-          title: 'Split Navbar', 
-          author: 'Tsabit Abdul Aziz', 
-          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/hero/3.png`,
-          person: `${process.env.REACT_APP_PUBLIC_URL}/assets/person/Male1.png`
-     },
-     {
-          title: 'Hero dengan Video',
-          author: 'Devti Nabillah C.', 
-          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/hero/4.png`,
-          person: `${process.env.REACT_APP_PUBLIC_URL}/assets/person/Famale1.png`
-     },
-     {
-          title: 'Hero Gambar Screenshot', 
-          author: 'Ricky E. Septiana', 
-          img: `${process.env.REACT_APP_PUBLIC_URL}/assets/cards/hero/5.png`,
-          person: `${process.env.REACT_APP_PUBLIC_URL}/assets/person/Male2.png`
-     },
-]
-
 const HomeHero = (props) => {
+     const handlePreview = (framework) => {
+          props.history.push(`/home/preview?type=Bagian Hero&name=${framework.title}&id=${framework.id}`)
+     }
 
      return(
           <Box>
@@ -87,7 +57,10 @@ const HomeHero = (props) => {
                          <FrameworkMenu headers={headerlist} />
                     </Grid>
                     <Grid item xs={12} lg={9}>
-                         <FrameworkList list={frameworks} />
+                         <FrameworkList 
+                              list={frameworks} 
+                              onPreview={handlePreview}
+                         />
                     </Grid>
                </Grid>
           </Box>
