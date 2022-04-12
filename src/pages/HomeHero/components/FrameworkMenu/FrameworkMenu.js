@@ -46,19 +46,32 @@ const StyledMenu = styled((props) => (
 }));
 
 const getlabel = (value) => {
+
      switch (value) {
           case '00':
-               return 'Semua Framework';
+               return { label: 'Semua Framework', img: null }
           case 1:
-               return 'HTML';
+               return { 
+                    label: 'HTML', 
+                    img: `${process.env.REACT_APP_PUBLIC_URL}/assets/icon/html.svg` 
+               }
           case 2:
-               return 'React';
+               return { 
+                    label: 'React', 
+                    img: `${process.env.REACT_APP_PUBLIC_URL}/assets/icon/react.svg` 
+               }
           case 3:
-               return 'Bootstrap';
+               return { 
+                    label: 'Bootstrap', 
+                    img: `${process.env.REACT_APP_PUBLIC_URL}/assets/icon/bootstrap.svg` 
+               }
           case 4:
-               return 'Tailwind';
+               return { 
+                    label: 'Tailwind', 
+                    img: `${process.env.REACT_APP_PUBLIC_URL}/assets/icon/tailwindcss.svg` 
+               }
           default:
-               return 'Semua Framework';
+               return { label: 'Semua Framework', img: null }
      }
 }
 
@@ -108,7 +121,7 @@ const FrameworkMenu = ({ headers, onChange }) => {
           onChange(val, value)
      }
 
-     const label = getlabel(value);
+     const { label, img: labelImg } = getlabel(value);
 
      return(
           <React.Fragment>
@@ -122,7 +135,10 @@ const FrameworkMenu = ({ headers, onChange }) => {
                          aria-expanded={open ? 'true' : undefined}
                          onClick={handleClick}
                     > 
-                         { label }
+                         <Box sx={{ display: 'flex', alignItems: 'center'}}>
+                              { labelImg !== null && <img src={labelImg} alt='icons' style={{ marginRight: '5px'}} />   }
+                              <span>{ label }</span>
+                         </Box>
                     </ButtonOptions>
                </Box>
 
@@ -163,7 +179,7 @@ const FrameworkMenu = ({ headers, onChange }) => {
                     }}
                     anchorEl={anchorEl}
                     open={open}
-                    //onClose={handleClose}
+                    onClose={() => setAnchorEl(null)}
                >
                     <MenuItem onClick={() => handleClose(1)} disableRipple>
                          <Stack direction={'row'} spacing={1}>

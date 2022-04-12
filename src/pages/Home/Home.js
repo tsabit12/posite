@@ -131,7 +131,7 @@ const Home = (props) => {
                     <ButtonLink disableRipple>Layout</ButtonLink>
                </MenuNavbar>
                <Grid container spacing={2} sx={{ marginTop: '42px'}}>
-                    { cardlist.map((row, index) => <Grid item xs={3} key={index}>
+                    { cardlist.map((row, index) => <Grid item xs={12} lg={3} key={index}>
                          <CardActionArea onClick={() => props.history.push(row.topath)}>
                               <Box 
                                    sx={{ 
@@ -153,7 +153,7 @@ const Home = (props) => {
                     </Grid>)}
 
                     {/* last Element */}
-                    <Grid item xs={3}>
+                    <Grid item lg={3} xs={12}>
                          <Box 
                               sx={{ 
                                    backgroundColor: '#F3F4F6', 
