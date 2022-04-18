@@ -74,6 +74,12 @@ export const theme = createTheme({
                lineHeight: '24px',
                color: 'rgba(37, 39, 63, 0.7)'
           },
+          h2: {
+               fontSize: '36px',
+               lineHeight: '54px',
+               fontWeight: '700',
+               color: '#1C1F37'
+          },
           h4: {
                color: '#FFFFFF',
                fontWeight: '700',
@@ -101,6 +107,13 @@ export const theme = createTheme({
                color: 'rgba(37, 39, 63, 0.7)',
                fontSize: '14px',
                lineHeight: '25.34px'
+          },
+          label: {
+               fontFamily: 'Poppins',
+               color: '#1C1F37',
+               fontSize: '16px',
+               lineHeight: '24px',
+               fontWeight: '500'
           }
      },
      palette: {

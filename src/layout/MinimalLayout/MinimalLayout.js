@@ -15,7 +15,7 @@ const MinimalLayout = ({ children }) => {
                          }
                     }}
                >
-                    <Box sx={{ minHeight: '80vh'}}>
+                    <Box sx={{ minHeight: '75vh'}}>
                          { children }
                     </Box>
                     <Stack direction='row' spacing={2} sx={{ marginTop: '36px'}}>

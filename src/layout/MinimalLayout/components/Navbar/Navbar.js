@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { alpha, AppBar, Box, Button, Chip, Menu, MenuItem, Stack, Toolbar, Typography } from '@mui/material';
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const NavbarRoot = styled(AppBar)({
      backgroundColor: '#FFFFFF',
@@ -120,7 +121,14 @@ const Navbar = () => {
                          <ButtonLink>
                               <Typography variant='link'>FAQ</Typography>
                          </ButtonLink>
-                         <Button variant='contained' color='primary'>Kontribusi</Button>
+                         <Button 
+                              variant='contained' 
+                              color='primary'
+                              component={Link}
+                              to="/login"
+                         >
+                              Kontribusi
+                         </Button>
                     </Stack>
                </Toolbar>
 
