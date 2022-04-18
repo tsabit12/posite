@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import React, { useState } from 'react'
-import { CheckboxComponent, InputComponent } from './components';
+import { BackdropLoader, CheckboxComponent, InputComponent } from './components';
 import { LoadingButton } from '@mui/lab';
+import { GoogleLogin } from 'react-google-login';
+import { ErrorMessage } from '../../Element';
 
 const LoginContainer = styled(Box)({
      height: '100%', 
@@ -38,9 +40,35 @@ const GoogleButton = styled(Button)({
 
 const Login = () => {
      const [isScure, setisScure] = useState(true);
+     const [loading, setloading] = useState(false);
+     const [errors, seterrors] = useState({});
+
+     const responseGoogle = (response) => {
+          console.log({ response });
+
+          if(response.profileObj){
+               setloading(true);
+
+               setTimeout(() => {
+                    setloading(false);
+               }, 3000);
+          }else{
+               let message = 'Something wrong on google endpoint';
+               if(response.details) message = response.details;
+
+               seterrors({ global: message })
+          }
+     }
 
      return(
           <LoginContainer>
+               <BackdropLoader open={loading} />
+               <ErrorMessage 
+                    open={!!errors.global}
+                    handleClose={() => seterrors(prev => ({ ...prev, global: undefined }))}
+                    message={errors.global}
+               />
+
                <Stack spacing={'24px'}>
                     <Box>
                          <Typography variant='h2'>Selamat datang di Posite!</Typography>
@@ -72,12 +100,22 @@ const Login = () => {
                     <LoginButton>Masuk</LoginButton>
                     <Typography textAlign={'center'} fontSize='16px' color={'#1C1F37'}>Atau</Typography>
 
-                    <GoogleButton 
-                         // disableRipple
-                         startIcon={<img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/google.svg`} alt='google-icon' />}
-                    >
-                         Masuk dengan Google
-                    </GoogleButton>
+                    <GoogleLogin
+                         clientId={process.env.REACT_APP_GOOGLE_CLIENT}
+                         render={renderProps => (
+                              <GoogleButton 
+                                   startIcon={<img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/google.svg`} alt='google-icon' />}
+                                   onClick={renderProps.onClick}
+                                   disabled={renderProps.disabled}
+                              >
+                                   Masuk dengan Google
+                              </GoogleButton>
+                         )}
+                         buttonText="Login"
+                         onSuccess={responseGoogle}
+                         onFailure={responseGoogle}
+                         //cookiePolicy={'single_host_origin'}
+                    />
                </Stack>
           </LoginContainer>    
      )

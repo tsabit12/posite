@@ -36,7 +36,7 @@ const LoginLayout = ({ children }) => {
 }
 
 LoginLayout.propTypes = {
-     children: PropTypes.number
+     children: PropTypes.node
 }
 
 export default LoginLayout;
