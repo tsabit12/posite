@@ -4,13 +4,13 @@ import { Redirect } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 
 const UserRoute = props => {
-     const { layout: Layout, component: Component, isAuthenticated, ...rest } = props;
+     const { layout: Layout, component: Component, isAuthenticated, session, ...rest } = props;
 
      return(
           <Route 
                { ...rest }
                render={matchProps => (
-                    <Layout>
+                    <Layout session={session}>
                          { isAuthenticated ? <Component { ...matchProps} /> : <Redirect to={'/login'} /> }
                     </Layout>
                )}
@@ -20,7 +20,8 @@ const UserRoute = props => {
 
 function mapStateToProps(state){
      return {
-          isAuthenticated: !!state.session.email
+          isAuthenticated: !!state.session.email,
+          session: state.session
      }
 }
 

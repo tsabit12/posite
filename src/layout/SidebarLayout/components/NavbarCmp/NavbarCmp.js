@@ -1,0 +1,87 @@
+import styled from '@emotion/styled';
+import { AppBar, Box, IconButton, Stack, Toolbar, Typography } from '@mui/material';
+import React, { useState } from 'react'
+import { AccountMenu, ProfileButton, Title } from './components';
+import PropTypes from 'prop-types';
+import MenuIcon from '@mui/icons-material/Menu';
+
+const NavbarRoot = styled(AppBar)({
+     boxShadow: '1px 0px 0px 1px rgb(255 255 255 / 10%)',
+     backgroundColor: '#FFF'
+});
+
+const NavbarCmp = (props) => {
+     const [anchorEl, setAnchorEl] = useState(null);
+     const open = Boolean(anchorEl);
+     const { firstName, lastName, imageUrl, level } = props.session;
+
+     const handleClick = (event) => setAnchorEl(event.currentTarget)
+
+     const handleClose = () => setAnchorEl(null)
+
+     return(
+          <NavbarRoot>
+               <Toolbar disableGutters  sx={{ left: 0, height: '90px'}}>
+                    { props.lgUp && props.drawerIsOpen && <Title onClick={props.onClickMenu} /> }
+
+                    <Box 
+                         sx={{
+                              flexGrow: 1, 
+                              marginLeft: {
+                                   xs: '1vh',
+                                   lg: props.drawerIsOpen ? '2vh' : '1vh'
+                              },
+                         }}
+                    >
+                         <Stack direction={'row'} spacing={2} alignItems='center'>
+                              <IconButton 
+                                   sx={{ display: { xs: 'inline-flex', lg: props.drawerIsOpen ? 'none' : 'inline-flex'}}} 
+                                   disableRipple
+                                   onClick={props.onClickMenu}
+                              >
+                                   <MenuIcon />
+                              </IconButton> 
+
+                              <Typography color={'#1C1F37'} fontSize={'32px'}>{ props.title }</Typography>
+                         </Stack>
+                    </Box>
+                    <Stack direction={'row'} spacing={2} alignItems='center' sx={{ paddingRight: 2 }}>
+                         <IconButton 
+                              onClick={handleClick}
+                              aria-controls={open ? 'account-menu' : undefined}
+                              aria-haspopup="true"
+                              aria-expanded={open ? 'true' : undefined}
+                              disableRipple
+                         >
+                              <ProfileButton 
+                                   fullname={`${firstName} ${lastName}`} 
+                                   imageUrl={imageUrl}
+                                   level={level}
+                              />
+                         </IconButton>
+                    </Stack>
+               </Toolbar>
+
+               <AccountMenu 
+                    anchorEl={anchorEl} 
+                    open={open} 
+                    handleClose={handleClose} 
+                    onLogout={() => alert('logout')} 
+               />
+          </NavbarRoot>
+     )
+}
+
+NavbarCmp.defaultProps = {
+     title: 'No title'
+}
+
+NavbarCmp.propTypes = {
+     drawerIsOpen: PropTypes.bool.isRequired,
+     lgUp: PropTypes.bool.isRequired,
+     title: PropTypes.string,
+     session: PropTypes.object.isRequired,
+     onClickMenu: PropTypes.func.isRequired
+}
+
+export default NavbarCmp;

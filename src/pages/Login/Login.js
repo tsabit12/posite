@@ -53,16 +53,17 @@ const Login = (props) => {
                setloading(true);
 
                setTimeout(() => {
-                    const { email, familyName: firstName, givenName: lastName, imageUrl } = response.profileObj;
+                    const { email, familyName: lastName, givenName: firstName, imageUrl } = response.profileObj;
                     const session = {
                          email,
                          firstName,
                          lastName,
-                         imageUrl 
+                         imageUrl,
+                         level: 1 
                     }
 
                     props.setLoggedIn(session);
-                    
+
                     setloading(false);
                }, 3000);
           }else{

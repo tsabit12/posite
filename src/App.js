@@ -16,11 +16,11 @@ const store = createStore(
 function App() {
   return (
     <BrowserRouter>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
           <Routes />
-        </ThemeProvider>
-      </Provider>
+        </Provider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }
