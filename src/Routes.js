@@ -1,16 +1,17 @@
 import { Redirect, Switch } from 'react-router-dom';
-import { GuestRoute } from './components';
+import { BothRouter, GuestRoute, UserRoute } from './components';
 import { LoginLayout, MinimalLayout } from './layout';
-import { Home, HomeHero, HomePreview, Login } from './pages';
+import { Dashboard, Home, HomeHero, HomePreview, Login } from './pages';
 
 const Routes = () => {
      return(
           <Switch>
-               <Redirect from="/" to="/login" exact />
-               <GuestRoute path="/home" exact component={Home} layout={MinimalLayout}  />
-               <GuestRoute path="/home/hero" exact component={HomeHero} layout={MinimalLayout}  />
-               <GuestRoute path="/home/preview" exact component={HomePreview} layout={MinimalLayout}  />
+               <Redirect from="/" to="/home" exact />
+               <BothRouter path="/home" exact component={Home} layout={MinimalLayout}  />
+               <BothRouter path="/home/hero" exact component={HomeHero} layout={MinimalLayout}  />
+               <BothRouter path="/home/preview" exact component={HomePreview} layout={MinimalLayout}  />
                <GuestRoute path="/login" exact component={Login} layout={LoginLayout}  />
+               <UserRoute path="/dashboard" exact component={Dashboard} layout={MinimalLayout} />
           </Switch>
      )
 }

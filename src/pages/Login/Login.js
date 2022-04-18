@@ -5,6 +5,9 @@ import { BackdropLoader, CheckboxComponent, InputComponent } from './components'
 import { LoadingButton } from '@mui/lab';
 import { GoogleLogin } from 'react-google-login';
 import { ErrorMessage } from '../../Element';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { setLoggedIn } from '../../actions/session';
 
 const LoginContainer = styled(Box)({
      height: '100%', 
@@ -38,7 +41,7 @@ const GoogleButton = styled(Button)({
      lineHeight: '18px'
 })
 
-const Login = () => {
+const Login = (props) => {
      const [isScure, setisScure] = useState(true);
      const [loading, setloading] = useState(false);
      const [errors, seterrors] = useState({});
@@ -50,11 +53,22 @@ const Login = () => {
                setloading(true);
 
                setTimeout(() => {
+                    const { email, familyName: firstName, givenName: lastName, imageUrl } = response.profileObj;
+                    const session = {
+                         email,
+                         firstName,
+                         lastName,
+                         imageUrl 
+                    }
+
+                    props.setLoggedIn(session);
+                    
                     setloading(false);
                }, 3000);
           }else{
                let message = 'Something wrong on google endpoint';
                if(response.details) message = response.details;
+               if(response.error) message = response.error;
 
                seterrors({ global: message })
           }
@@ -121,4 +135,8 @@ const Login = () => {
      )
 }
 
-export default Login;
+Login.propTypes = {
+     setLoggedIn: PropTypes.func.isRequired
+}
+
+export default connect(null, { setLoggedIn })(Login);

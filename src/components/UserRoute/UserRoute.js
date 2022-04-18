@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 
-const GuestRoute = props => {
+const UserRoute = props => {
      const { layout: Layout, component: Component, isAuthenticated, ...rest } = props;
 
      return(
@@ -11,7 +11,7 @@ const GuestRoute = props => {
                { ...rest }
                render={matchProps => (
                     <Layout>
-                         { !isAuthenticated ? <Component { ...matchProps} /> : <Redirect to={'/dashboard'} /> }
+                         { isAuthenticated ? <Component { ...matchProps} /> : <Redirect to={'/login'} /> }
                     </Layout>
                )}
           />
@@ -24,4 +24,4 @@ function mapStateToProps(state){
      }
 }
 
-export default connect(mapStateToProps, null)(GuestRoute);
+export default connect(mapStateToProps, null)(UserRoute);
