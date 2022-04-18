@@ -22,26 +22,25 @@ const NavbarCmp = (props) => {
      return(
           <NavbarRoot>
                <Toolbar disableGutters  sx={{ left: 0, height: '90px'}}>
-                    { props.lgUp && props.drawerIsOpen && <Title onClick={props.onClickMenu} /> }
+                    { props.lgUp && <Title onClick={props.onClickMenu} drawerIsOpen={props.drawerIsOpen} /> }
 
                     <Box 
                          sx={{
                               flexGrow: 1, 
                               marginLeft: {
                                    xs: '1vh',
-                                   lg: props.drawerIsOpen ? '2vh' : '1vh'
+                                   lg: '3vh'
                               },
                          }}
                     >
                          <Stack direction={'row'} spacing={2} alignItems='center'>
                               <IconButton 
-                                   sx={{ display: { xs: 'inline-flex', lg: props.drawerIsOpen ? 'none' : 'inline-flex'}}} 
+                                   sx={{ display: { xs: 'inline-flex', lg: 'none' }}} 
                                    disableRipple
                                    onClick={props.onClickMenu}
                               >
                                    <MenuIcon />
                               </IconButton> 
-
                               <Typography color={'#1C1F37'} fontSize={'32px'}>{ props.title }</Typography>
                          </Stack>
                     </Box>

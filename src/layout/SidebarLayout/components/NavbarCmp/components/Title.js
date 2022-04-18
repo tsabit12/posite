@@ -1,9 +1,23 @@
-import { Stack } from '@mui/material';
+import { IconButton, Stack } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import styled from '@emotion/styled';
 
-const Title = ({ onClick }) => {
+const MenuIcon = styled(IconButton)({
+     backgroundColor: '#FFF',
+     '&:hover': {
+          backgroundColor: '#FFF'
+     },
+     width: '45px',
+     height: '45px',
+     marginRight: '-20px',
+     border: '1px solid #DADADA'
+})   
+
+const Title = ({ onClick, drawerIsOpen }) => {
      return(
           <Stack 
                direction={'row'} 
@@ -24,21 +38,16 @@ const Title = ({ onClick }) => {
                >
                     <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/logoputih.svg`} alt='logo' />
                </Box>
-               <Box 
-                    sx={{
-                         cursor: 'pointer',
-                         marginRight: '-16px'
-                    }}
-                    onClick={onClick}
-               >
-                    <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/back-icon.svg`} alt='menu' />
-               </Box>
+               <MenuIcon onClick={onClick}>
+                    { drawerIsOpen ? <ArrowBackIosIcon sx={{ color: '#445BFF', fontSize: '16px'}} /> : <ArrowForwardIosIcon sx={{ color: '#445BFF', fontSize: '16px'}} />}
+               </MenuIcon>
           </Stack>
      )
 }
 
 Title.propTypes = {
-     onClick: PropTypes.func.isRequired
+     onClick: PropTypes.func.isRequired,
+     drawerIsOpen: PropTypes.bool.isRequired
 }
 
 export default Title;

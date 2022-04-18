@@ -139,7 +139,7 @@ const Sidebar = (props) => {
             open={props.open}
             PaperProps={{
               sx: {
-                backgroundColor: 'neutral.900',
+                backgroundColor: '#081A51',
                 color: '#FFFFFF',
                 width: 280
               }
