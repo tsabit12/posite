@@ -24,12 +24,12 @@ const BoldText = styled('span')({
      color: '#4A3AFF',
      textTransform: 'capitalize'
 })
-//39243
+
 const Dashboard = () => {
      return(
           <DashboardLayout elevation={0}>
                <Grid container spacing={2} alignItems='center'>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6}>
                          <Stack spacing={'12px'}>
                               <Box>
                                    <Typography variant='h4' color='#081A51' fontWeight={'600'} lineHeight='48px'>Kami Telah Menunggumu!</Typography>
@@ -57,7 +57,7 @@ const Dashboard = () => {
                          </Box>
                          
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} lg={6}>
                          <img alt='39243' src={`${process.env.REACT_APP_PUBLIC_URL}/assets/39243.svg`} style={{ width: '100%'}}/>
                     </Grid>
                </Grid>

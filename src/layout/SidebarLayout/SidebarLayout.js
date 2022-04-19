@@ -23,6 +23,11 @@ const allmenus = [
           startIcon: `${process.env.REACT_APP_PUBLIC_URL}/assets/icon/Chart_fill.svg`,
           title: 'Dashboard'
      },
+     {
+          path: '/statistik',
+          startIcon: `${process.env.REACT_APP_PUBLIC_URL}/assets/icon/Chart_alt.svg`,
+          title: 'Statistik'
+     },
 ]
 
 const SidebarLayout = (props) => {

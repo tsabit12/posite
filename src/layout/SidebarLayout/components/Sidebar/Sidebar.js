@@ -16,7 +16,7 @@ const MenuButton = styled(Button)({
      border: 0,
      borderRadius: 5,
      color: '#FFF',
-     padding: '0 30px',
+     padding: '0 20px',
      height: '56px',
      fontSize: '15px',
      fontWeight:'400',
@@ -59,6 +59,7 @@ const Sidebar = (props) => {
                                         justifyContent: 'flex-start', 
                                         backgroundColor: props.pathname === row.path ? activeColor : nonactiveColor
                                    }}
+                                   style={{ marginTop: '5px'}}
                                    component={Link}
                                    to={row.path}
                                    variant='text'

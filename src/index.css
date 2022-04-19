@@ -88,6 +88,13 @@ body {
        url('./fonts/dm-sans-v10-latin-700.svg#DMSans') format('svg'); /* Legacy iOS */
 }
 
+@font-face {
+  font-family: 'Gilory';
+  font-style: normal;
+  font-weight: 500;
+  src: url('./fonts/Gilroy-Light.otf'); /* IE9 Compat Modes */
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -1,7 +1,7 @@
 import { Redirect, Switch } from 'react-router-dom';
 import { BothRouter, GuestRoute, UserRoute } from './components';
 import { LoginLayout, MinimalLayout, SidebarLayout } from './layout';
-import { Dashboard, Home, HomeHero, HomePreview, Login } from './pages';
+import { Dashboard, Home, HomeHero, HomePreview, Login, Statistik } from './pages';
 
 const Routes = () => {
      return(
@@ -12,6 +12,7 @@ const Routes = () => {
                <BothRouter path="/home/preview" exact component={HomePreview} layout={MinimalLayout}  />
                <GuestRoute path="/login" exact component={Login} layout={LoginLayout}  />
                <UserRoute path="/dashboard" exact component={Dashboard} layout={SidebarLayout} />
+               <UserRoute path="/statistik" exact component={Statistik} layout={SidebarLayout} />
           </Switch>
      )
 }
