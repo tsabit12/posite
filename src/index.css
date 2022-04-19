@@ -95,6 +95,13 @@ body {
   src: url('./fonts/Gilroy-Light.otf'); /* IE9 Compat Modes */
 }
 
+@font-face {
+  font-family: 'Gilory';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./fonts/Gilroy-ExtraBold.otf'); /* IE9 Compat Modes */
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

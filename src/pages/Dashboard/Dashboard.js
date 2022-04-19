@@ -58,7 +58,7 @@ const Dashboard = () => {
                          
                     </Grid>
                     <Grid item xs={12} lg={6}>
-                         <img alt='39243' src={`${process.env.REACT_APP_PUBLIC_URL}/assets/39243.svg`} style={{ width: '100%'}}/>
+                         <img alt='39243' src={`${process.env.REACT_APP_PUBLIC_URL}/assets/39243.png`} style={{ width: '100%'}}/>
                     </Grid>
                </Grid>
           </DashboardLayout>

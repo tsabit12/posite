@@ -123,6 +123,13 @@ export const theme = createTheme({
                fontSize: '16px',
                lineHeight: '24px',
                fontWeight: '500'
+          },
+          cardtitle: {
+               fontFamily: 'Poppins',
+               fontSize: '20px',
+               lineHeight: '30px',
+               fontWeight: '500',
+               color: '#081A51'
           }
      },
      palette: {
