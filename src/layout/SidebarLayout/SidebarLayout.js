@@ -68,7 +68,7 @@ const SidebarLayout = (props) => {
                          flex: '1 1 auto',
                          flexDirection: 'column',
                          width: '100%',
-                         padding: '0 16px 16px 16px'
+                         padding: '17px 32px'
                     }}
                     component='main'
                >

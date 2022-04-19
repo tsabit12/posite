@@ -12,7 +12,9 @@ const MinimalLayout = ({ children }) => {
                          padding: {
                               lg: '39px 84.5px 39px 84.5px',
                               xs: '30px'
-                         }
+                         },
+                         backgroundColor: '#FCFCFC',
+                         minHeight: '85.5vh'
                     }}
                >
                     <Box sx={{ minHeight: '75vh'}}>

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Avatar, Box, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 
 const ProfileButton = ({ fullname, imageUrl, level }) => {
@@ -17,12 +17,22 @@ const ProfileButton = ({ fullname, imageUrl, level }) => {
                }}
           >
                <Stack spacing={'12px'} direction="row" alignItems="center">
-                    <Avatar
+                    <img 
+                         src={imageUrl} 
+                         alt={fullname} 
+                         referrerPolicy='no-referrer' 
+                         style={{
+                              width: '38px',
+                              height: '38px',
+                              borderRadius: '19px'
+                         }}
+                    />
+                    {/* <Avatar
                          alt={fullname}
                          src={imageUrl}
                          sx={{ width: 38, height: 38 }}
                          referrerPolicy="no-referrer"
-                    />
+                    /> */}
                     
                     <Box>
                          <Typography fontSize={'16px'} lineHeight='19.36px' textAlign='left' color='#000000'>{ fullname }</Typography>
