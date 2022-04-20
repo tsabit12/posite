@@ -76,7 +76,7 @@ const Login = (props) => {
      }
 
      return(
-          <LoginContainer>
+          <LoginContainer sx={{ padding: { lg: '0px', xs: '20px'}}}>
                <BackdropLoader open={loading} />
                <ErrorMessage 
                     open={!!errors.global}
