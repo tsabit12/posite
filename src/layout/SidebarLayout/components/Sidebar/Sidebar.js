@@ -101,7 +101,13 @@ const Sidebar = (props) => {
                                    >
                                         Need Help with PoSite?
                                    </Typography>
-                                   <AskButton fullWidth>Go to help center</AskButton>
+                                   <AskButton 
+                                        fullWidth
+                                        component={Link}
+                                        to="/help"
+                                   >
+                                        Go to help center
+                                   </AskButton>
                               </CustomPaper>
                          </div>
                     </Stack>

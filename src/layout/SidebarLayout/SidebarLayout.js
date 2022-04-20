@@ -28,6 +28,11 @@ const allmenus = [
           startIcon: `${process.env.REACT_APP_PUBLIC_URL}/assets/icon/Chart_alt.svg`,
           title: 'Statistik'
      },
+     {
+          path: '/leaderboard',
+          startIcon: `${process.env.REACT_APP_PUBLIC_URL}/assets/icon/Folder_alt.svg`,
+          title: 'Leaderboard'
+     }
 ]
 
 const SidebarLayout = (props) => {
