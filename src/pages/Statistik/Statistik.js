@@ -3,7 +3,8 @@ import { Grid, Paper } from '@mui/material';
 import React, { useState } from 'react'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
 import { DataFormater } from '../../utils';
-import { ButtonGroup, CustomCursor, CustomTooltip, DataPie, Total } from './components';
+import { ButtonGroup, CustomCursor, CustomTooltip, DataPie, Total, CardHeader } from './components';
+import TopKomponen from './components/TopKomponen';
 
 const data = [
      {name: 'Jan', ft: 500, ui: 600, kt: 300 }, 
@@ -30,6 +31,37 @@ const data02 = [
        "value": 40
      }
 ];
+
+const data03 = [
+     {
+          "title": "Hero dengan form",
+          "like": 124000,
+          "likePersentage": "12%",
+          "component": "UI Komponen",
+          "date": "14 April 2019"
+     },
+     {
+          "title": "Aplikasi Mobile POSAJA",
+          "like": 124000,
+          "likePersentage": "12%",
+          "component": "UI Komponen",
+          "date": "14 April 2019"
+     },
+     {
+          "title": "Aplikasi Mobile POSPAY",
+          "like": 125000,
+          "likePersentage": "12%",
+          "component": "UI Komponen",
+          "date": "14 April 2019"
+     },
+     {
+          "title": "Aplikasi Mobile NIPOS",
+          "like": 120000,
+          "likePersentage": "12%",
+          "component": "UI Komponen",
+          "date": "14 April 2019"
+     }
+]
 
 
 const CardLayout = styled(Paper)({
@@ -101,8 +133,15 @@ const Statistik = () => {
                     </CardLayout>
                </Grid>
                <Grid item xs={12} lg={4}>
-                    <CardLayout elevation={0} style={{ padding: 0}}>
+                    <CardLayout elevation={0} style={{ padding: 0, height: '100%'}}>
+                         <CardHeader iconColor='#017EFA' title='Demographic' />
                          <DataPie data={data02} />
+                    </CardLayout>
+               </Grid>
+               <Grid item xs={12} lg={8}>
+                    <CardLayout elevation={0} style={{ padding: 0, height: '100%'}}>
+                         <CardHeader iconColor='#51CBFF' title='UI Komponen Terbaik' />
+                         <TopKomponen list={data03} />
                     </CardLayout>
                </Grid>
           </Grid>
