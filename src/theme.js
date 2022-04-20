@@ -22,7 +22,15 @@ export const theme = createTheme({
                          padding: '10px 30px 10px 30px'
                     }
                }
-          }
+          },
+          MuiTable: {
+               styleOverrides: {
+                    root: {
+                         borderCollapse: 'separate',
+                         borderSpacing: '0px 7px'
+                    }
+               }
+          },
      },
      typography: {
           fontFamily: '"Poppins","DM Sans","Inter","Segoe UI"',
