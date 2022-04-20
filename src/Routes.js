@@ -1,7 +1,7 @@
 import { Redirect, Switch } from 'react-router-dom';
 import { BothRouter, GuestRoute, UserRoute } from './components';
 import { LoginLayout, MinimalLayout, SidebarLayout } from './layout';
-import { Dashboard, Home, HomeHero, HomePreview, Login, NotFound, Statistik } from './pages';
+import { Dashboard, Home, HomeHero, HomePreview, Leaderboard, Login, NotFound, Statistik } from './pages';
 
 const Routes = () => {
      return(
@@ -14,6 +14,7 @@ const Routes = () => {
                <UserRoute path="/dashboard" exact component={Dashboard} layout={SidebarLayout} />
                <UserRoute path="/statistik" exact component={Statistik} layout={SidebarLayout} />
                <BothRouter path="/not-found" exact component={NotFound} layout={MinimalLayout}  />
+               <UserRoute path="/leaderboard" exact component={Leaderboard} layout={SidebarLayout}  />
                <Redirect to="/not-found" />
           </Switch>
      )
