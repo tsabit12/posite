@@ -15,11 +15,11 @@ const CustomTableRow = styled(TableBody)({
           backgroundColor: '#4A3AFF',
           fontSize: '16px',
           fontWeight: '400',
-          height: '20px'
+          height: '40px'
      },
      ".MuiTableRow-root td:nth-of-type(1)": {
           borderRadius: '40px',
-          width: '20px'
+          width: '40px'
      },
      ".MuiTableRow-root td:nth-of-type(2)": {
           backgroundColor: 'transparent',
@@ -39,7 +39,7 @@ const CurrentUser = ({ data: row }) => {
      return(
           <CustomTableRow>
                <TableRow>
-                    <TableCell align='center'><span style={{ fontSize: '24px'}}>70</span></TableCell>
+                    <TableCell align='center'><span style={{ fontSize: '24px'}}>18</span></TableCell>
                     <TableCell />
                     <TableCell>
                          <Stack direction={'row'} spacing={'11px'}>

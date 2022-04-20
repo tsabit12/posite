@@ -70,20 +70,6 @@ const topusers = [
           "like": 20100,
           "imageUrl": `${process.env.REACT_APP_PUBLIC_URL}/assets/avatar/people4.svg`
      },
-     {
-          "name": "Jhon Doe",
-          "level": 1,
-          "contribution": 1900,
-          "like": 20100,
-          "imageUrl": `${process.env.REACT_APP_PUBLIC_URL}/assets/avatar/people4.svg`
-     },
-     {
-          "name": "Jhon Doe",
-          "level": 1,
-          "contribution": 1900,
-          "like": 20100,
-          "imageUrl": `${process.env.REACT_APP_PUBLIC_URL}/assets/avatar/people4.svg`
-     },
 ]
 
 const CustomTableBody = styled(TableBody)({
@@ -93,11 +79,11 @@ const CustomTableBody = styled(TableBody)({
           backgroundColor: '#FFF',
           fontSize: '16px',
           fontWeight: '400',
-          height: '20px'
+          height: '40px'
      },
      ".MuiTableRow-root td:nth-of-type(1)": {
           borderRadius: '40px',
-          width: '20px'
+          width: '40px'
      },
      ".MuiTableRow-root td:nth-of-type(2)": {
           backgroundColor: 'transparent',
@@ -141,7 +127,7 @@ const Leaderboard = (props) => {
                <Table sx={{ borderSpacing: '0px 10px'}}>
                     <CustomTableBody>
                          { topusers.slice(3).map((row, index) => <TableRow key={index}>
-                              <TableCell align='center'><span style={{ fontSize: '24px'}}>{ index+2 }</span></TableCell>
+                              <TableCell align='center'><span style={{ fontSize: '24px'}}>{ index+4 }</span></TableCell>
                               <TableCell />
                               <TableCell>
                                    <Stack direction={'row'} spacing={'11px'}>
