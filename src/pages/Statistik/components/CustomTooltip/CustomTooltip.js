@@ -10,6 +10,7 @@ const CustomTooltip = ({ active, payload, label }) => {
           <Box sx={{ backgroundColor: '#081A51', borderRadius: '8px'}}>
                <Box sx={{ padding: '16px'}}>
                     <Typography fontSize={'16px'} color='#FFFFFF' fontFamily={'Gilory'}>{label} 2021</Typography>
+                    
                     <Stack direction={'row'} justifyContent='space-between' sx={{ width: '240px'}}>
                          <Stack direction={'row'} alignItems='center' spacing={'10px'}>
                               <Circle color='#017EFA' />
@@ -27,6 +28,16 @@ const CustomTooltip = ({ active, payload, label }) => {
                          </Stack>
                          <Typography color={'#FFFFFF'} fontSize='14px' fontWeight={'400'}>
                               {decimalNumber(payload[0].value)}
+                         </Typography>
+                    </Stack>
+
+                    <Stack direction={'row'} justifyContent='space-between' sx={{ width: '240px'}}>
+                         <Stack direction={'row'} alignItems='center' spacing={'10px'}>
+                              <Circle color='#FD1F9B' />
+                              <Typography color={'rgba(255, 255, 255, 0.7)'} fontSize='14px' fontWeight={'400'}>Kontributor</Typography>
+                         </Stack>
+                         <Typography color={'#FFFFFF'} fontSize='14px' fontWeight={'400'}>
+                              {decimalNumber(payload[2].value)}
                          </Typography>
                     </Stack>
                </Box>

@@ -1,23 +1,23 @@
 import styled from '@emotion/styled';
-import { Grid, Paper, Stack } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import React, { useState } from 'react'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
 import { DataFormater } from '../../utils';
 import { ButtonGroup, CustomCursor, CustomTooltip, DataPie, Total } from './components';
 
 const data = [
-     {name: 'Jan', ft: 500, ui: 600 }, 
-     {name: 'Feb', ft: 800, ui: 700 },
-     {name: 'Mar', ft: 700, ui: 550 },
-     {name: 'Apr', ft: 500, ui: 750 },
-     {name: 'Mei', ft: 550, ui: 600 },
-     {name: 'Jun', ft: 850, ui: 700 },
-     {name: 'Jul', ft: 750, ui: 1078 },
-     {name: 'Aug', ft: 600, ui: 500 },
-     {name: 'Sep', ft: 650, ui: 600 },
-     {name: 'Oct', ft: 680, ui: 750 },
-     {name: 'Nov', ft: 850, ui: 900 },
-     {name: 'Dec', ft: 1000, ui: 800 },
+     {name: 'Jan', ft: 500, ui: 600, kt: 300 }, 
+     {name: 'Feb', ft: 800, ui: 700, kt: 550  },
+     {name: 'Mar', ft: 700, ui: 550, kt: 450  },
+     {name: 'Apr', ft: 500, ui: 750, kt: 600  },
+     {name: 'Mei', ft: 550, ui: 600, kt: 700  },
+     {name: 'Jun', ft: 850, ui: 700, kt: 500  },
+     {name: 'Jul', ft: 750, ui: 1078, kt: 400  },
+     {name: 'Aug', ft: 600, ui: 500, kt: 350  },
+     {name: 'Sep', ft: 650, ui: 600, kt: 400  },
+     {name: 'Oct', ft: 680, ui: 750, kt: 500  },
+     {name: 'Nov', ft: 850, ui: 900, kt: 450  },
+     {name: 'Dec', ft: 1000, ui: 800, kt: 550  },
 ]
 
 const data02 = [
@@ -48,14 +48,18 @@ const Statistik = () => {
           <Grid container spacing={'24px'}>
                <Grid item xs={12}>
                     <CardLayout elevation={0}>
-                         <Stack direction={'row'} justifyContent='space-between' sx={{ marginBottom: '27px'}} alignItems='center'>
-                              <Total ui={1072} fe={1098} />
-                              <ButtonGroup 
-                                   handleClick={handleClick}
-                                   activeButton={activeButton}
-                              />
-                         </Stack>
-                         <ResponsiveContainer width='99%' height={400}>
+                         <Grid container justifyContent={'space-between'} sx={{ marginBottom: '27px'}} alignItems='center' spacing={'24px'}>
+                              <Grid item lg={6} xs={12}>
+                                   <Total ui={1072} fe={1150000000} kt={35000} />
+                              </Grid>
+                              <Grid item lg={6} xs={12}>
+                                   <ButtonGroup 
+                                        handleClick={handleClick}
+                                        activeButton={activeButton}
+                                   />
+                              </Grid>
+                         </Grid>
+                         <ResponsiveContainer width='99%' height={350}>
                               <LineChart data={data}>
                                    <Line 
                                         type="basic" 
@@ -72,6 +76,14 @@ const Statistik = () => {
                                         stroke='#017EFA' 
                                         strokeWidth={3} 
                                         activeDot={{ stroke: '#017EFA', strokeWidth: 5, r: 10, fill: '#FFF' }}
+                                   />
+                                   <Line 
+                                        type="basic" 
+                                        dataKey="kt" 
+                                        dot={{ stroke: '#FD1F9B', strokeWidth: 5 }} 
+                                        stroke='#FD1F9B' 
+                                        strokeWidth={3} 
+                                        activeDot={{ stroke: '#FD1F9B', strokeWidth: 5, r: 10, fill: '#FFF' }}
                                    />
                                    <CartesianGrid strokeDasharray="3 3" stroke='#DADADA' />
                                    <XAxis 
