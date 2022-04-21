@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
-import { AppBar, Box, IconButton, Stack, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, IconButton, Stack, Toolbar, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import { AccountMenu, ProfileButton, Title } from './components';
 import PropTypes from 'prop-types';
 import MenuIcon from '@mui/icons-material/Menu';
+import AddIcon from '@mui/icons-material/Add';
+import { Link } from 'react-router-dom';
 
 const NavbarRoot = styled(AppBar)({
      boxShadow: '1px 0px 0px 1px rgb(255 255 255 / 10%)',
@@ -42,6 +44,15 @@ const NavbarCmp = (props) => {
                                    <MenuIcon />
                               </IconButton> 
                               <Typography color={'#1C1F37'} fontSize={'32px'}>{ props.title }</Typography>
+
+                              { props.title !== 'Upload' && <Button 
+                                   variant='contained'
+                                   startIcon={<AddIcon />}
+                                   component={Link}
+                                   to="/uploads"
+                              >
+                                   Upload
+                              </Button> }
                          </Stack>
                     </Box>
                     <Stack direction={'row'} spacing={2} alignItems='center' sx={{ paddingRight: 2 }}>

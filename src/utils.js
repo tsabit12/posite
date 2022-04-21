@@ -6,6 +6,8 @@ export const getPageTitle = (pathname) => {
                return 'Statistik';
           case '/leaderboard':
                return 'Leaderboard';
+          case '/uploads':
+               return 'Upload';
           default:
                return 'Home';
      }
