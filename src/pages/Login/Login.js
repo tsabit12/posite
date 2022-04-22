@@ -8,6 +8,8 @@ import { ErrorMessage } from '../../Element';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setLoggedIn } from '../../actions/session';
+import api from '../../api';
+import { handleAxiosError } from '../../utils';
 
 const LoginContainer = styled(Box)({
      height: '100%', 
@@ -46,26 +48,28 @@ const Login = (props) => {
      const [loading, setloading] = useState(false);
      const [errors, seterrors] = useState({});
 
-     const responseGoogle = (response) => {
-          console.log({ response });
-
+     const responseGoogle = async (response) => {
           if(response.profileObj){
                setloading(true);
 
-               setTimeout(() => {
-                    const { email, familyName: lastName, givenName: firstName, imageUrl } = response.profileObj;
-                    const session = {
-                         email,
-                         firstName,
-                         lastName,
-                         imageUrl,
-                         level: 1 
-                    }
+               const { email, familyName: lastname, givenName: firstname, imageUrl: imageurl } = response.profileObj;
+               const session = {
+                    email,
+                    firstname,
+                    lastname,
+                    imageurl,
+                    level: 1 
+               }
 
-                    props.setLoggedIn(session);
+               try {
+                    const { resData } = await api.user.create(session);
+                    props.setLoggedIn(resData.token);
+               } catch (err) {
+                    const { message, code } = handleAxiosError(err);
+                    seterrors({ global: `${code} | ${message}`})
+               }
 
-                    setloading(false);
-               }, 3000);
+               setloading(false);
           }else{
                let message = 'Something wrong on google endpoint';
                if(response.details) message = response.details;

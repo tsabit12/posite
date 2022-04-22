@@ -31,4 +31,24 @@ export const decimalNumber = (number) => {
      }else{
          return '0';
      }
- }
+}
+
+export const handleAxiosError = (err) => {
+     const result = {}
+
+     if (err.response) {
+          const { codeResponse, resData, textResponse } = err.response.data;
+          let msg = textResponse;
+          if(typeof resData === 'string') msg = resData;
+          result.message = msg;
+          result.code    = codeResponse;
+     } else if (err.request) {
+          result.message = "Request error";
+          result.code    = 400;
+     } else {
+          result.message = "Internal server error";
+          result.code    = 500;
+     }
+
+     return result;
+}

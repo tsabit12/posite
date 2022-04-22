@@ -108,11 +108,11 @@ const Leaderboard = (props) => {
      const { session } = props;
 
      const currentuser = {
-          "name": `${session.firstName} ${session.lastName}`,
+          "name": `${session.firstname} ${session.lastname}`,
           "level": 1,
           "contribution": 1900,
           "like": 20100,
-          "imageUrl": session.imageUrl
+          "imageUrl": session.imageurl
      }
 
      return(

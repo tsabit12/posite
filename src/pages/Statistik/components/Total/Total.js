@@ -6,7 +6,7 @@ import { DataFormater } from '../../../../utils';
 const Total = ({ ui, fe, kt }) => {
      return(
           <Grid container spacing={'24px'}>
-               <Grid item sx={12}>
+               <Grid item xs={6} lg={3}>
                     <Stack direction={'row'} spacing={'16px'} alignItems='center'>
                          <img 
                               alt='ui_cmp' 
@@ -22,37 +22,37 @@ const Total = ({ ui, fe, kt }) => {
                          </Box>
                     </Stack>
                </Grid>
-               <Grid item sx={12}>
-               <Stack direction={'row'} spacing={'16px'} alignItems='center'>
-                    <img 
-                         alt='ui_cmp' 
-                         src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/cmp_fe.svg`} 
-                         style={{
-                              width: '64px',
-                              height: '64px'
-                         }}
-                    />
-                    <Box>
-                         <Typography variant='body1' color={'#A9ABB0'} lineHeight='28px'>Total Front End Library</Typography>
-                         <Typography variant='title' lineHeight={'40px'} fontWeight='600'>{ DataFormater(fe) }</Typography>
-                    </Box>
-               </Stack>
+               <Grid item xs={6} lg={3}>
+                    <Stack direction={'row'} spacing={'16px'} alignItems='center'>
+                         <img 
+                              alt='ui_cmp' 
+                              src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/cmp_fe.svg`} 
+                              style={{
+                                   width: '64px',
+                                   height: '64px'
+                              }}
+                         />
+                         <Box>
+                              <Typography variant='body1' color={'#A9ABB0'} lineHeight='28px'>Total Front End Library</Typography>
+                              <Typography variant='title' lineHeight={'40px'} fontWeight='600'>{ DataFormater(fe) }</Typography>
+                         </Box>
+                    </Stack>
                </Grid>
-               <Grid item sx={12}>
-               <Stack direction={'row'} spacing={'16px'} alignItems='center'>
-                    <img 
-                         alt='ui_cmp' 
-                         src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/cmp_kt.svg`} 
-                         style={{
-                              width: '64px',
-                              height: '64px'
-                         }}
-                    />
-                    <Box>
-                         <Typography variant='body1' color={'#A9ABB0'} lineHeight='28px'>Total Kontributor</Typography>
-                         <Typography variant='title' lineHeight={'40px'} fontWeight='600'>{ DataFormater(kt) }</Typography>
-                    </Box>
-               </Stack>
+               <Grid item xs={6} lg={3}>
+                    <Stack direction={'row'} spacing={'16px'} alignItems='center'>
+                         <img 
+                              alt='ui_cmp' 
+                              src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/cmp_kt.svg`} 
+                              style={{
+                                   width: '64px',
+                                   height: '64px'
+                              }}
+                         />
+                         <Box>
+                              <Typography variant='body1' color={'#A9ABB0'} lineHeight='28px'>Total Kontributor</Typography>
+                              <Typography variant='title' lineHeight={'40px'} fontWeight='600'>{ DataFormater(kt) }</Typography>
+                         </Box>
+                    </Stack>
                </Grid>
           </Grid>
      )

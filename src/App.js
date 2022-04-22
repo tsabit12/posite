@@ -7,6 +7,9 @@ import thunk from "redux-thunk";
 import Routes from "./Routes";
 import theme from "./theme";
 import rootReducer from './rootReducer';
+import { useEffect } from "react";
+import api from "./api";
+import axios from "axios";
 
 const store = createStore(
   rootReducer,
@@ -14,6 +17,23 @@ const store = createStore(
 )
 
 function App() {
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { resData } = await api.tokenApp(); 
+
+        axios.interceptors.request.use(function(config){
+          config.headers.Authorization = `Bearer ${resData.token}`;
+          return config;
+        })
+
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+  
   return (
     <BrowserRouter>
       <Provider store={store}>

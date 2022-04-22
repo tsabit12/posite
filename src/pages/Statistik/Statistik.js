@@ -81,10 +81,10 @@ const Statistik = () => {
                <Grid item xs={12}>
                     <CardLayout elevation={0}>
                          <Grid container justifyContent={'space-between'} sx={{ marginBottom: '27px'}} alignItems='center' spacing={'24px'}>
-                              <Grid item lg={6} xs={12}>
+                              <Grid item lg={9} xs={12}>
                                    <Total ui={1072} fe={1150000000} kt={35000} />
                               </Grid>
-                              <Grid item lg={6} xs={12}>
+                              <Grid item lg={3} xs={12}>
                                    <ButtonGroup 
                                         handleClick={handleClick}
                                         activeButton={activeButton}
