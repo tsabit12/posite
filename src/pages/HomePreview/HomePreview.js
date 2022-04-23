@@ -1,5 +1,5 @@
 import { Breadcrumbs, Link, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 import queryString from 'query-string'
 import { Box } from '@mui/system';
@@ -15,10 +15,19 @@ const HomePreview = (props) => {
      let breadcrumbdata = {};
      let framework = props.source;
 
+     useEffect(() => {
+          if(Object.keys(props.source).length <= 0){
+               props.history.replace('/home/hero');
+          }
+          //eslint-disable-next-line
+     }, [props.source]);
+
      if(props.location.search){
           isExistPage = true;     
           breadcrumbdata = queryString.parse(props.location.search);
      }
+
+
 
      const handleDownload = async () => {
           try {
