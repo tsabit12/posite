@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
     "html-to-react": "^1.4.8",
+    "js-file-download": "^0.4.12",
     "jwt-decode": "^3.1.2",
     "prop-types": "^15.8.1",
     "query-string": "^7.1.1",

@@ -31,7 +31,7 @@ const CutsomButton = styled(Button)(({ theme, active }) => ({
      padding: '4px 15px'
 }))
 
-const Header = ({ framework, title, activePage, onChangePage }) => {
+const Header = ({ framework, title, activePage, onChangePage, onDownload }) => {
 
      let icon = null;
      let frameworkTitle = null;
@@ -98,6 +98,7 @@ const Header = ({ framework, title, activePage, onChangePage }) => {
                                    src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/fa-solid_cloud-download-alt.svg`} 
                               />
                          }
+                         onClick={onDownload}
                     >
                          Download
                     </DownloadButton>
@@ -110,7 +111,8 @@ Header.propTypes = {
      framework: PropTypes.object.isRequired,
      title: PropTypes.string.isRequired,
      activePage: PropTypes.string.isRequired,
-     onChangePage: PropTypes.func.isRequired
+     onChangePage: PropTypes.func.isRequired,
+     onDownload: PropTypes.func.isRequired
 }
 
 export default Header;

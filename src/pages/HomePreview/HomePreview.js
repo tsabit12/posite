@@ -6,6 +6,7 @@ import { Box } from '@mui/system';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { Code, Header, Preview } from './components';
 import { connect } from 'react-redux';
+import api from '../../api';
 
 const HomePreview = (props) => {
      const [activePage, setactivePage] = useState('preview');
@@ -17,6 +18,20 @@ const HomePreview = (props) => {
      if(props.location.search){
           isExistPage = true;     
           breadcrumbdata = queryString.parse(props.location.search);
+     }
+
+     const handleDownload = async () => {
+          try {
+               const codeurl       = props.source.code;
+               var getfileType     = codeurl.split('.');
+               getfileType         = getfileType[getfileType.length - 1];
+               getfileType         = `${props.source.title}.${getfileType}`;
+               getfileType         = getfileType.replace(/ /g, '');
+               
+               await api.source.download(props.source.code, getfileType);
+          } catch (error) {
+               console.log({ error });
+          }
      }
      
 
@@ -44,6 +59,7 @@ const HomePreview = (props) => {
                               framework={framework}
                               activePage={activePage}
                               onChangePage={(value) => setactivePage(value)}
+                              onDownload={handleDownload}
                          />
 
                          { activePage === 'preview' ? <Preview 
