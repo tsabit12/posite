@@ -5,13 +5,14 @@ import PropTypes from 'prop-types'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { alpha } from '@mui/system';
 
-const InputContainer = styled(Paper)({
+const InputContainer = styled(Paper)(({ theme, err }) => ({
      backgroundColor: '#F7F7F8',
      marginTop: '8px',
      height: '55px',
      borderRadius: '10px',
-     padding: '0px 20px'
-})
+     padding: '0px 20px',
+     border: err === 'true' ? '0.5px solid red' : 'none'
+}))
 
 const StyledMenu = styled((props) => (
      <Menu
@@ -54,9 +55,9 @@ const StyledMenu = styled((props) => (
      },
 }));
 
-const ButtonOptions = styled(Button)({
+const ButtonOptions = styled(Button)(({ theme, err }) => ({
      backgroundColor: '#F7F7F8',
-     //border: '0.5px solid rgba(0, 0, 0, 0.2)',
+     border: err === 'true' ? '0.5px solid red' : 'none',
      color: 'rgba(37, 39, 63, 0.7)',
      fontSize: '14px',
      lineHeight: '21px',
@@ -67,6 +68,12 @@ const ButtonOptions = styled(Button)({
      '&:hover': {
           backgroundColor: '#F7F7F8'
      }
+}))  
+
+const ErrLabel = styled(Typography)({
+     color: 'red',
+     fontSize: '13px',
+     fontWeight: '400'
 })
 
 const CustomeInput = ({ 
@@ -76,7 +83,8 @@ const CustomeInput = ({
      name, 
      options, 
      onChange,
-     value
+     value,
+     errors
 }) => {
      const [anchorEl, setAnchorEl] = useState(null);
 
@@ -93,13 +101,17 @@ const CustomeInput = ({
           return (
                <Box>
                     <Typography>{label}</Typography>
-                    <InputContainer elevation={0}>
+                    <InputContainer elevation={0} err={errors[name] ? 'true':'false'}>
                          <InputBase 
                               sx={{ height: '100%' }}
                               fullWidth
                               { ...inputProps }
+                              value={value}
+                              onChange={onChange}
+                              name={name}
                          />
                     </InputContainer> 
+                    { errors[name] && <ErrLabel>{ errors[name] }</ErrLabel>}
                </Box>
           )
      }else if(type === 'select'){
@@ -109,6 +121,7 @@ const CustomeInput = ({
                <Box>
                     <Typography>{label}</Typography>
                     <ButtonOptions 
+                         err={errors[name] ? 'true': 'false'}
                          fullWidth 
                          endIcon={<KeyboardArrowDownIcon />}
                          aria-controls={open ? `framework-menu-${name}` : undefined}
@@ -123,6 +136,7 @@ const CustomeInput = ({
                               </span>
                          </Box>
                     </ButtonOptions>
+                    { errors[name] && <ErrLabel>{ errors[name] }</ErrLabel>}
                     <StyledMenu
                          id={`framework-menu-${name}`}
                          MenuListProps={{
@@ -157,7 +171,8 @@ CustomeInput.propTypes = {
      name: PropTypes.string.isRequired,
      options: PropTypes.array,
      onChange: PropTypes.func,
-     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+     errors: PropTypes.object.isRequired
 }
 
 export default CustomeInput;

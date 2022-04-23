@@ -33,6 +33,10 @@ export const decimalNumber = (number) => {
      }
 }
 
+const getFirstMessage = (obj) => {
+     return obj[Object.keys(obj)[0]];
+}
+
 export const handleAxiosError = (err) => {
      const result = {}
 
@@ -40,6 +44,7 @@ export const handleAxiosError = (err) => {
           const { codeResponse, resData, textResponse } = err.response.data;
           let msg = textResponse;
           if(typeof resData === 'string') msg = resData;
+          if(typeof resData === 'object') msg = getFirstMessage(resData);
           result.message = msg;
           result.code    = codeResponse;
      } else if (err.request) {

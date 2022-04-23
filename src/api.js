@@ -6,5 +6,8 @@ export default {
      user: {
           create: (payload) => axios.post(`${process.env.REACT_APP_ENDPOINT}/user/createUser`, { ...payload })
                .then(res => res.data)
+     },
+     source: {
+          add: (formData) => axios.post(`${process.env.REACT_APP_ENDPOINT}/source/upload`, formData).then(res => res.data)
      }
 }
