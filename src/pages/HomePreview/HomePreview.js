@@ -18,6 +18,7 @@ const HomePreview = (props) => {
           isExistPage = true;     
           breadcrumbdata = queryString.parse(props.location.search);
      }
+     
 
      if(isExistPage){
           return (

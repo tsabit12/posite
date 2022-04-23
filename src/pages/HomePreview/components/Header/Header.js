@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
 import styled from '@emotion/styled';
+import frameworkDefault from '../../../../dummy/bagianhero.json';
 
 const DownloadButton = styled(Button)({
      backgroundColor: '#F68407',
@@ -31,6 +32,15 @@ const CutsomButton = styled(Button)(({ theme, active }) => ({
 }))
 
 const Header = ({ framework, title, activePage, onChangePage }) => {
+
+     let icon = null;
+     let frameworkTitle = null;
+     const findIcon = frameworkDefault.find(row => row.id === framework.frameworkid);
+     if(findIcon) {
+          icon = findIcon.icon;
+          frameworkTitle = findIcon.framework;
+     }
+
      return(
           <Stack direction={'row'} justifyContent='space-between' alignItems={'center'}>
                <Box>
@@ -72,14 +82,14 @@ const Header = ({ framework, title, activePage, onChangePage }) => {
 
                     <DisabledButton
                          startIcon={
-                              <img 
-                                   alt='cloud' 
-                                   src={`${process.env.REACT_APP_PUBLIC_URL}/assets/icon/tailwindcss.svg`} 
+                              icon === null ? null : <img 
+                                   alt='framework' 
+                                   src={`${process.env.REACT_APP_PUBLIC_URL}${icon}`} 
                               />
                          }
                          disableRipple
                     >
-                         Tailwind
+                         { frameworkTitle }
                     </DisabledButton>
                     <DownloadButton 
                          startIcon={

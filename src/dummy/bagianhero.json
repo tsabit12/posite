@@ -1,18 +1,27 @@
 [
      {
           "framework": "HTML",
-          "id": 1
+          "id": 1,
+          "icon": "/assets/icon/html.svg"
      },
      {
           "framework": "React",
-          "id": 2
+          "id": 2,
+          "icon": "/assets/icon/react.svg"
+     },
+     {
+          "framework": "Bootstrap",
+          "id": 3,
+          "icon": "/assets/icon/bootstrap.svg"
      },
      {
           "framework": "Tailwind",
-          "id": 4
+          "id": 4,
+          "icon": "/assets/icon/tailwindcss.svg"
      },
      {
           "framework": "Semua Framework",
-          "id": 41
+          "id": 41,
+          "icon": null
      }
 ]
