@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PropTypes from 'prop-types'
+import api from '../../../../api';
 
 const StyledMenu = styled((props) => (
      <Menu
@@ -90,18 +91,25 @@ const ButtonOptions = styled(Button)({
      }
 })
 
-const FrameworkMenu = ({ headers, onChange }) => {
+const FrameworkMenu = ({ headers, onChange, onError }) => {
      const [anchorEl, setAnchorEl] = useState(null);
-     const [value, setvalue] = useState('00');
+     const [value, setvalue] = useState('41');
      const [data, setdata] = useState([]);
      const [activeIndex, setactiveIndex] = useState(0);
      const open = Boolean(anchorEl);
 
      useEffect(() => {
-          let idx = headers[activeIndex] ? headers[activeIndex].id : 0;
-          const { components } = headers.find(row => row.id === value);
-          setdata(components);
-          onChange(idx, value);
+          (async () => {
+               let idx = headers[activeIndex] ? headers[activeIndex].id : 0;
+               try {
+                    const { resData } = await api.source.category({ framework: parseInt(value) });
+                    setdata(resData.result);
+                    onChange(idx, value);
+               } catch (error) {
+                    onError(error);
+               }
+          })();
+          
           //eslint-disable-next-line
      }, [value]);
 
@@ -115,9 +123,9 @@ const FrameworkMenu = ({ headers, onChange }) => {
           setAnchorEl(null);
      } 
 
-     const handleChange = (i) => {
+     const handleChange = async (i) => {
           setactiveIndex(i);
-          const val = data[i].id;
+          const val = data[i].category_id;
           onChange(val, value)
      }
 
@@ -157,9 +165,9 @@ const FrameworkMenu = ({ headers, onChange }) => {
                               }}
                               onClick={() => handleChange(index)}
                          >
-                              <Typography sx={{ fontSize: '16px', color: 'rgba(37, 39, 63, 0.7)', fontWeight: '600'}}>{row.title}</Typography>
+                              <Typography sx={{ fontSize: '16px', color: 'rgba(37, 39, 63, 0.7)', fontWeight: '600'}}>{row.category_name}</Typography>
                               <Chip 
-                                   label={row.count} 
+                                   label={row.total} 
                                    sx={{ 
                                         //padding: '8px 8px 8px 8px', 
                                         height: '36px',
@@ -206,7 +214,7 @@ const FrameworkMenu = ({ headers, onChange }) => {
                          </Stack>
                     </MenuItem>
 
-                    { value !== '00' && <MenuItem onClick={() => handleClose('00')} disableRipple>
+                    { value !== '41' && <MenuItem onClick={() => handleClose('41')} disableRipple>
                          <span>Semua Framework</span>
                     </MenuItem> }
                </StyledMenu>
@@ -216,7 +224,8 @@ const FrameworkMenu = ({ headers, onChange }) => {
 
 FrameworkMenu.propTypes = {
      headers: PropTypes.array.isRequired,
-     onChange: PropTypes.func.isRequired
+     onChange: PropTypes.func.isRequired,
+     onError: PropTypes.func.isRequired
 }
 
 export default FrameworkMenu;

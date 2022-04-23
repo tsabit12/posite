@@ -46,10 +46,10 @@ const FrameworkList = ({ list, onPreview }) => {
                                    overflow: 'hidden'
                               }}
                          >
-                              <Box sx={{ margin: '14px 48px 14px 48px'}}>
+                              <Box sx={{ margin: '14px 48px 14px 48px' }}>
                                    <img 
                                         src={`${process.env.REACT_APP_PUBLIC_URL}${row.img}`}
-                                        style={{width: '100%', height: '100%'}} 
+                                        style={{width: '100%', height: '200px', borderRadius: '10px'}} 
                                         alt={`image_card${index}`} 
                                    />
                               </Box>

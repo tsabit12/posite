@@ -77,7 +77,6 @@ const cardlist = [
      }
 ]
 
-
 const Home = (props) => {
      return(
           <React.Fragment>
@@ -116,7 +115,7 @@ const Home = (props) => {
                     </Grid>
                     <Grid item xs={12} lg={6}>
                          <Box sx={{ display: 'flex', justifyContent: 'flex-end'}}>
-                              <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/39296.svg`} alt='message' style={{ width: '100%'}} />
+                              <img src={`${process.env.REACT_APP_PUBLIC_URL}/assets/homeicon.png`} alt='message' style={{ width: '100%'}} />
                          </Box>
                     </Grid>
                </Grid>

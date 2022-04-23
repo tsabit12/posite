@@ -1,7 +1,12 @@
 import styled from '@emotion/styled';
 import { Box, Button, Divider, Paper, Stack, Typography } from '@mui/material';
 import React, { useState } from 'react'
+import { connect } from 'react-redux';
 import { CustomeInput, CustomFile } from './components';
+import PropTypes from 'prop-types'
+import api from '../../api';
+import { handleAxiosError } from '../../utils';
+import { ErrorMessage } from '../../Element';
 
 const CardLayout = styled(Paper)({
      backgroundColor: '#FFF',
@@ -30,14 +35,17 @@ const catgories = [
      { name: "Karir", value: 10},
 ]
 
-const Uploads = () => {
+const Uploads = (props) => {
      const [berkas, setberkas] = useState({
           file: null,
           cover: null,
           framework: '00',
-          category: '00'
+          category: '00',
+          title: ''
      })
      const [errors, seterrors] = useState({});
+     const [loading, setloading] = useState(false);
+     const [success, setsuccess] = useState(false);
 
      const handleChangeFile = (file) => {
           setberkas(prev => ({ ...prev, file: file.length > 0 ? file : null }));
@@ -51,12 +59,80 @@ const Uploads = () => {
 
      const handleChangeSelect = (value, name) => {
           setberkas(prev => ({ ...prev, [name]: value }));
+          seterrors(prev => ({ ...prev, [name]: undefined }))
+     }
+
+     const handleChangeText = (e) => {
+          const { name, value } = e.target;
+          setberkas(prev => ({ ...prev, [name]: value }))
+          seterrors(prev => ({ ...prev, [name]: undefined }))
+     }
+
+     const onSubmit = async () => {
+          const errors = validate(berkas);
+          if(Object.keys(errors).length === 0){
+               setloading(true);
+
+               const formData = new FormData();
+               formData.append("framework_id", berkas.framework);
+               formData.append("category_id", berkas.category);
+               formData.append("title", berkas.title);
+               formData.append("email", props.user.email);
+               formData.append("source", berkas.file[0])
+               formData.append("source", berkas.cover[0])
+
+               try {
+                    await api.source.add(formData);
+                    setsuccess(true);
+               } catch (error) {
+                    const { message, code } = handleAxiosError(error);
+                    seterrors({ global: `${code} | ${message}`});
+               }
+
+               setloading(false);
+          }else{
+               seterrors(errors);
+          }
+     } 
+
+     const validate = (field) => {
+          const error = {};
+          if(!field.title) error.title = "Title is required";
+          if(field.framework === '00') error.framework = "Framework is required";
+          if(field.category === '00') error.category = "Category is required";
+          if(field.file === null) error.file = "File is required";
+          if(field.cover === null) error.cover = "File is required";
+          return error;
+     }
+
+     const handleReset = () => {
+          setsuccess(false);
+          setberkas({
+               file: null,
+               cover: null,
+               framework: '00',
+               category: '00',
+               title: ''
+          })
      }
 
      const { file, cover } = berkas;
 
      return(
           <Stack direction={'row'} justifyContent='center' alignItems={'center'} sx={{ height: '80vh'}}>
+               <ErrorMessage 
+                    open={!!errors.global}
+                    handleClose={() => seterrors(prev => ({ ...prev, global: undefined }))}
+                    message={errors.global}
+               />
+
+               <ErrorMessage 
+                    severity='success'
+                    open={success}
+                    message='200|File successfully uploaded'
+                    handleClose={handleReset}
+               />
+
                <CardLayout>
                     <Stack spacing={'16px'}>
                          <Typography variant='cardtitle'>Upload File UI Komponen</Typography>
@@ -69,6 +145,9 @@ const Uploads = () => {
                                    }}
                                    type='input'
                                    name='title'
+                                   value={berkas.title}
+                                   onChange={handleChangeText}
+                                   errors={errors}
                               />
                               <CustomeInput 
                                    label='Pilih Kategori' 
@@ -80,6 +159,7 @@ const Uploads = () => {
                                    onChange={handleChangeSelect}
                                    options={catgories}
                                    value={berkas.category}
+                                   errors={errors}
                               />
                               <CustomeInput 
                                    label='Pilih Framework' 
@@ -91,6 +171,7 @@ const Uploads = () => {
                                    options={frameworks}
                                    onChange={handleChangeSelect}
                                    value={berkas.framework}
+                                   errors={errors}
                               />
                               <Stack direction={'row'} spacing='16px'>
                                    <CustomFile 
@@ -116,7 +197,14 @@ const Uploads = () => {
                          <Box sx={{ height: '2px'}} />
                          <Divider />
                          <Stack direction={'row'} justifyContent='flex-end'>
-                              <Button sx={{ height: '60px' }} variant='contained'>Simpan</Button>
+                              <Button 
+                                   onClick={onSubmit} 
+                                   sx={{ height: '60px' }} 
+                                   variant='contained'
+                                   disabled={loading}
+                              >
+                                   { loading ? 'Loading...' : 'Simpan'}
+                              </Button>
                          </Stack>
                     </Stack>
                </CardLayout>
@@ -124,4 +212,14 @@ const Uploads = () => {
      )
 }
 
-export default Uploads;
+Uploads.propTypes = {
+     user: PropTypes.object.isRequired
+}
+
+function mapStateToProps(state){
+     return{
+          user: state.session
+     }
+}
+
+export default connect(mapStateToProps, null)(Uploads);

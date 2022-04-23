@@ -15,7 +15,7 @@ const NavbarRoot = styled(AppBar)({
 const NavbarCmp = (props) => {
      const [anchorEl, setAnchorEl] = useState(null);
      const open = Boolean(anchorEl);
-     const { firstName, lastName, imageUrl, level } = props.session;
+     const { firstname, lastname, imageurl, level } = props.session;
 
      const handleClick = (event) => setAnchorEl(event.currentTarget)
 
@@ -64,8 +64,8 @@ const NavbarCmp = (props) => {
                               disableRipple
                          >
                               <ProfileButton 
-                                   fullname={`${firstName} ${lastName}`} 
-                                   imageUrl={imageUrl}
+                                   fullname={`${firstname} ${lastname}`} 
+                                   imageUrl={imageurl}
                                    level={level}
                               />
                          </IconButton>
