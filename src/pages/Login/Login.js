@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import styled from "@emotion/styled";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";

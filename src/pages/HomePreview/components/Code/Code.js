@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Box, Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { CodeEditorEditable } from "react-code-editor-editable";

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { IconButton, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
