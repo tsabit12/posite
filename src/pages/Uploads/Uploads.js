@@ -197,7 +197,7 @@ const Uploads = (props) => {
                 onChange={handleChangeFile}
                 errors={errors}
                 seterrors={seterrors}
-                allowedTypes={["HTML"]}
+                allowedTypes={["HTML", "JS"]}
               />
             </Stack>
           </Stack>

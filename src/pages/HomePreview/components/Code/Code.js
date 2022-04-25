@@ -44,7 +44,7 @@ const Code = ({ codeurl }) => {
         }
       })();
     }
-  }, [codeurl]);
+  }, []);
 
   useEffect(() => {
     if (copied) {
@@ -53,6 +53,9 @@ const Code = ({ codeurl }) => {
       }, 1400);
     }
   }, [copied]);
+
+  const filetype = codeurl.split(".");
+  let languageType = filetype[filetype.length - 1];
 
   return (
     <Box sx={{ marginTop: "16px", position: "relative" }}>
@@ -87,7 +90,7 @@ const Code = ({ codeurl }) => {
         setValue={setvalue}
         width="100%"
         height="57vh"
-        language="html"
+        language={languageType}
         inlineNumbers
         borderRadius="20px"
         caretColor={"red"}
