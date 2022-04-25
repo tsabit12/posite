@@ -1,2 +1,2 @@
-export { default as CustomeInput } from './CustomeInput';
-export { default as CustomFile } from './CustomFile';
+export { default as CustomeInput } from "./CustomeInput";
+export { default as CustomFile } from "./CustomFile";

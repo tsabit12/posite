@@ -1,1 +1,1 @@
-export { default } from './InputComponent';
+export { default } from "./InputComponent";

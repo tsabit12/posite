@@ -1,1 +1,1 @@
-export { default } from './MinimalLayout';
+export { default } from "./MinimalLayout";

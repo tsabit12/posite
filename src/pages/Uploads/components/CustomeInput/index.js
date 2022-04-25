@@ -1,1 +1,1 @@
-export { default } from './CustomeInput';
+export { default } from "./CustomeInput";

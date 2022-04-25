@@ -1,1 +1,1 @@
-export { default } from './DataPie';
+export { default } from "./DataPie";

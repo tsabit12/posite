@@ -1,1 +1,1 @@
-export { default } from './CustomFile';
+export { default } from "./CustomFile";

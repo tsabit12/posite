@@ -1,1 +1,1 @@
-export { default } from './TopKomponen';
+export { default } from "./TopKomponen";

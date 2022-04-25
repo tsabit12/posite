@@ -1,1 +1,1 @@
-export { default } from './FrameworkMenu';
+export { default } from "./FrameworkMenu";
